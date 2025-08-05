@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="product-page-title">Product Details - ZeeClothes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500 ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
+        </marquee>
+    </div>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="menswear.html">MENSWEAR</a></li>
+                <li><a href="#">LIMITED</a></li>
+                <li><a href="#">zeeworld</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="user-menu">
+            <a href="#">LOGIN</a>
+            <a href="#" id="cart-link">CART(0)</a>
+            <a href="#">EN</a>
+        </div>
+    </header>
+    
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="menswear.html">MENSWEAR</a></li>
+            <li><a href="#">LIMITED</a></li>
+            <li><a href="#">zeeworld</a></li>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">CART(0)</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Breadcrumb Section -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <nav class="breadcrumb" id="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="menswear.html">Menswear</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span id="breadcrumb-product">Product</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Product Detail Section -->
+        <section class="product-detail-section">
+            <div class="container">
+                <div class="product-detail-grid">
+                    <!-- Product Gallery -->
+                    <div class="product-gallery">
+                        <div class="main-image-container">
+                            <img id="main-product-image" src="" alt="Product Image" class="main-product-image">
+                            <div class="image-zoom-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="thumbnail-gallery" id="thumbnail-gallery">
+                            <!-- Thumbnails will be populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Product Information -->
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h1 class="product-title" id="product-title">Product Name</h1>
+                            <div class="product-price">
+                                <span class="current-price" id="product-price">€ 0.00</span>
+                            </div>
+                        </div>
+
+                        <p class="product-description" id="product-description">
+                            Product description will be loaded here...
+                        </p>
+
+                        <div class="product-options">
+                                                    <!-- Color Selection -->
+                        <div class="color-selection" id="color-selection">
+                            <label class="option-label">
+                                Color <span class="selected-color" id="selected-color">Black</span>
+                            </label>
+                            <div class="color-options" id="color-options">
+                                <!-- Color options will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Size Selection -->
+                        <div class="size-selection">
+                            <label class="option-label">
+                                Size 
+                                <span class="size-availability" id="size-availability">Coming Soon</span>
+                            </label>
+                            <div class="size-guide-link">
+                                <a href="#" id="size-guide-btn">
+                                    <i class="fas fa-ruler"></i>
+                                    Size Guide
+                                </a>
+                            </div>
+                            <div class="size-options" id="size-options">
+                                <!-- Size options will be populated dynamically -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Actions -->
+                    <div class="product-actions">
+                        <button class="add-to-cart-btn" id="add-to-cart-btn" disabled>
+                            <i class="fas fa-shopping-cart"></i>
+                            Add to Cart
+                        </button>
+                        <button class="notify-btn" id="notify-btn">
+                            <i class="fas fa-bell"></i>
+                            Notify When Available
+                        </button>
+                        <button class="wishlist-btn" id="wishlist-btn">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+
+                        <!-- Product Details Accordion -->
+                        <div class="product-details-accordion">
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="details">
+                                    <h3>Details</h3>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content" id="details">
+                                    <ul id="product-details-list">
+                                        <!-- Details will be populated dynamically -->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="materials">
+                                    <h3>Materials & Care</h3>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content" id="materials">
+                                    <ul id="materials-list">
+                                        <!-- Materials will be populated dynamically -->
+                                    </ul>
+                                    <div class="care-instructions">
+                                        <div class="care-icons">
+                                            <div class="care-icon">
+                                                <i class="fas fa-hand-sparkles"></i>
+                                                <span>Gentle wash</span>
+                                            </div>
+                                            <div class="care-icon">
+                                                <i class="fas fa-temperature-low"></i>
+                                                <span>30°C max</span>
+                                            </div>
+                                            <div class="care-icon">
+                                                <i class="fas fa-ban"></i>
+                                                <span>Do not bleach</span>
+                                            </div>
+                                            <div class="care-icon">
+                                                <i class="fas fa-wind"></i>
+                                                <span>Air dry</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <div class="accordion-header" data-target="shipping">
+                                    <h3>Shipping & Returns</h3>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                                <div class="accordion-content" id="shipping">
+                                    <div class="shipping-info">
+                                        <div class="shipping-option">
+                                            <i class="fas fa-truck"></i>
+                                            <div>
+                                                <h4>Standard Shipping</h4>
+                                                <p>Delivery in 3-5 working days. Free for orders above ₹31,500.</p>
+                                            </div>
+                                        </div>
+                                        <div class="shipping-option">
+                                            <i class="fas fa-shipping-fast"></i>
+                                            <div>
+                                                <h4>Express Shipping</h4>
+                                                <p>Delivery in 1-2 working days. ₹1,350 additional cost.</p>
+                                            </div>
+                                        </div>
+                                        <div class="shipping-option">
+                                            <i class="fas fa-undo"></i>
+                                            <div>
+                                                <h4>Free Returns</h4>
+                                                <p>30 days to change your mind. Free and simple returns.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Products Section -->
+        <section class="related-products-section">
+            <div class="container">
+                <h2 class="section-title">You Might Also Like</h2>
+                <div class="related-products-grid" id="related-products-grid">
+                    <!-- Related products will be populated dynamically -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal for Size Guide -->
+    <div class="modal-overlay" id="size-guide-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Size Guide</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="size-chart-info">
+                    <p>All measurements are in cm</p>
+                    <p>Model is 188 cm tall and wears size M</p>
+                </div>
+                <div class="size-chart-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Size</th>
+                                <th>Chest</th>
+                                <th>Waist</th>
+                                <th>Hips</th>
+                                <th>Length</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>S</td>
+                                <td>96-100</td>
+                                <td>80-84</td>
+                                <td>96-100</td>
+                                <td>68</td>
+                            </tr>
+                            <tr>
+                                <td>M</td>
+                                <td>100-104</td>
+                                <td>84-88</td>
+                                <td>100-104</td>
+                                <td>70</td>
+                            </tr>
+                            <tr>
+                                <td>L</td>
+                                <td>104-108</td>
+                                <td>88-92</td>
+                                <td>104-108</td>
+                                <td>72</td>
+                            </tr>
+                            <tr>
+                                <td>XL</td>
+                                <td>108-112</td>
+                                <td>92-96</td>
+                                <td>108-112</td>
+                                <td>74</td>
+                            </tr>
+                            <tr>
+                                <td>XXL</td>
+                                <td>112-116</td>
+                                <td>96-100</td>
+                                <td>112-116</td>
+                                <td>76</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal for Notification -->
+    <div class="modal-overlay" id="notify-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Availability Information</h2>
+                <button class="modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="notify-form" id="notify-form">
+                    <div class="form-group">
+                        <label for="notify-size">Size</label>
+                        <select id="notify-size" required>
+                            <option value="">Select size</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                            <option value="XXL">XXL</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notify-email">Email</label>
+                        <input type="email" id="notify-email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="privacy-check" required>
+                            <span class="checkmark"></span>
+                            I have read and accepted the <a href="#">Privacy Policy</a> provided by ZeeClothes Ltd.
+                        </label>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Professional Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <!-- Main Footer Content -->
+                <div class="footer-main">
+                    <div class="footer-section footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                        </div>
+                        <p class="footer-description">
+                            Elevating fashion through innovative design and sustainable practices. 
+                            Discover the perfect fusion of style and functionality.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" class="social-link" aria-label="LinkedIn">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Shop</h3>
+                        <ul class="footer-links">
+                            <li><a href="menswear.html">Menswear</a></li>
+                            <li><a href="#">Limited Edition</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                            <li><a href="#">Sale</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                            <li><a href="#">Investors</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section footer-newsletter">
+                        <h3 class="footer-title">Stay Connected</h3>
+                        <p class="newsletter-description">
+                            Subscribe to get updates on new collections and exclusive offers.
+                        </p>
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" placeholder="Enter your email" class="newsletter-input" required>
+                                <button type="submit" class="newsletter-btn">
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 ZeeClothes. All rights reserved.</p>
+                        </div>
+                        <div class="footer-legal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Animated Background Elements -->
+        <div class="footer-bg-elements">
+            <div class="bg-element bg-element-1"></div>
+            <div class="bg-element bg-element-2"></div>
+            <div class="bg-element bg-element-3"></div>
+        </div>
+    </footer>
+
+    <script src="product-detail.js"></script>
+</body>
+</html>

@@ -14,9 +14,6 @@ document.addEventListener('DOMContentLoaded', function() {
         ignoreMobileResize: true
     });
     
-    // Initialize custom cursor
-    initCustomCursor();
-    
     // Initialize loading screen
     initLoadingScreen();
     
@@ -79,59 +76,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, {passive: true});
     }
 
-    // Custom Cursor Implementation
-    function initCustomCursor() {
-        const cursor = document.querySelector('.custom-cursor');
-        const cursorFollower = document.querySelector('.custom-cursor-follower');
-        
-        if (!cursor || !cursorFollower) return;
-        
-        let mouseX = 0, mouseY = 0;
-        let followerX = 0, followerY = 0;
-        
-        // Update cursor position
-        document.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            
-            gsap.to(cursor, {
-                x: mouseX,
-                y: mouseY,
-                duration: 0.1,
-                ease: "power2.out"
-            });
-        });
-        
-        // Animate follower with delay
-        gsap.ticker.add(() => {
-            const dx = mouseX - followerX;
-            const dy = mouseY - followerY;
-            
-            followerX += dx * 0.1;
-            followerY += dy * 0.1;
-            
-            gsap.set(cursorFollower, {
-                x: followerX,
-                y: followerY
-            });
-        });
-        
-        // Add hover effects
-        const hoverElements = document.querySelectorAll('a, button, .product-card, .image-wrapper');
-        
-        hoverElements.forEach(element => {
-            element.addEventListener('mouseenter', () => {
-                cursor.classList.add('hover');
-                cursorFollower.classList.add('hover');
-            });
-            
-            element.addEventListener('mouseleave', () => {
-                cursor.classList.remove('hover');
-                cursorFollower.classList.remove('hover');
-            });
-        });
-    }
-    
     // Loading Screen Animation
     function initLoadingScreen() {
         const loadingScreen = document.getElementById('loading-screen');

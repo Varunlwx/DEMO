@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menswear - ZeeClothes Fashion Brand</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — SPEDIZIONE GRATUITA PER ORDINI SUPERIORI A 350€
+        </marquee>
+    </div>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="menswear.html" class="active">MENSWEAR</a></li>
+                <li><a href="#">LIMITED</a></li>
+                <li><a href="#">zeeworld</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="user-menu">
+            <a href="#">LOGIN</a>
+            <a href="#">CART(0)</a>
+            <a href="#">EN</a>
+        </div>
+    </header>
+    
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="menswear.html">MENSWEAR</a></li>
+            <li><a href="#">LIMITED</a></li>
+            <li><a href="#">zeeworld</a></li>
+            <li><a href="#">LOGIN</a></li>
+            <li><a href="#">CART(0)</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <!-- Hero Section for Menswear -->
+        <section class="menswear-hero">
+            <div class="hero-content">
+                <h1 class="page-title" id="page-title">MENSWEAR</h1>
+                <p class="page-subtitle">Sophisticated styles for the modern gentleman</p>
+            </div>
+            <div class="hero-bg-overlay"></div>
+        </section>
+
+        <!-- Category Filter Section -->
+        <section class="category-filter-section">
+            <div class="container">
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">View All</button>
+                    <button class="filter-btn" data-category="polo">Polo</button>
+                    <button class="filter-btn" data-category="sweater">Maglieria</button>
+                    <button class="filter-btn" data-category="tshirt">T-shirt</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Grid Section -->
+        <section class="menswear-products-section">
+            <div class="container">
+                <div class="products-grid" id="products-grid">
+                    
+                    <!-- Key Products with proper data-product-id -->
+                    <div class="product-card" data-category="polo" data-product-id="obsidian">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400&h=500&fit=crop&crop=center" alt="Obsidian Polo" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">OBSIDIAN</h3>
+                            <p class="product-description">Polo con zip e dettagli a contrasto.</p>
+                            <span class="product-price">€ 109.00</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="polo" data-product-id="tephra">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=400&h=500&fit=crop&crop=center" alt="Tephra Polo" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">TEPHRA</h3>
+                            <p class="product-description">Polo essenziale in cotone organico.</p>
+                            <span class="product-price">€ 69.00</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sweater" data-product-id="diorite">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop&crop=center" alt="Diorite Cardigan" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">DIORITE</h3>
+                            <p class="product-description">Cardigan in cotone e cashmere.</p>
+                            <span class="product-price">€ 129.00</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sweater" data-product-id="septaria">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=500&fit=crop&crop=center" alt="Septaria Sweater" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">SEPTARIA</h3>
+                            <p class="product-description">Maglia girocollo in cotone e cashmere.</p>
+                            <span class="product-price">€ 109.00</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sweater" data-product-id="basalt">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=500&fit=crop&crop=center" alt="Basalt Sweater" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">BASALT</h3>
+                            <p class="product-description">Maglia girocollo in cashmere tinto a mano.</p>
+                            <span class="product-price">€ 189.00</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="tshirt" data-product-id="travertine">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop&crop=center" alt="Travertine T-shirt" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">TRAVERTINE</h3>
+                            <p class="product-description">T-shirt in cotone e cashmere.</p>
+                            <span class="product-price">€ 82.00</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-main">
+                    <div class="footer-section footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                        </div>
+                        <p class="footer-description">
+                            Elevating fashion through innovative design and sustainable practices.
+                        </p>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 ZeeClothes. All rights reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="menswear.js"></script>
+</body>
+</html>
