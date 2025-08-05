@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZeeClothes - Fashion Brand</title>
+    <title>Menswear - ZeeClothes Fashion Brand</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.39/build/spline-viewer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 </head>
 <body>
-
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
         <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
@@ -25,19 +23,19 @@
 
     <div class="promo-banner">
         <marquee behavior="scroll" direction="left" scrollamount="5">
-            ZeeClothes PROMO | LAUNCH 50% OFF — SPEDIZIONE GRATUITA PER ORDINI SUPERIORI A 350€ ZeeClothes PROMO | LAUNCH 50% OFF — SPEDIZIONE GRATUITA PER ORDINI SUPERIORI A 350€
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
         </marquee>
     </div>
 
     <header>
         <div class="logo">
-            <a href="#">
+            <a href="index.html">
                 <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
             </a>
         </div>
         <nav>
             <ul class="main-menu">
-                <li><a href="menswear.html">MENSWEAR</a></li>
+                <li><a href="menswear.html" class="active">MENSWEAR</a></li>
                 <li><a href="#">LIMITED</a></li>
                 <li><a href="#">zeeworld</a></li>
             </ul>
@@ -65,107 +63,117 @@
     </div>
 
     <main>
-        <section class="hero-section">
-            <spline-viewer url="https://prod.spline.design/6iA8vQHQeyir23p6/scene.splinecode"></spline-viewer>
-            <div class="hero-overlay"></div>
+        <!-- Hero Section for Menswear -->
+        <section class="menswear-hero">
             <div class="hero-content">
-                <h1 class="hero-title" id="hero-title">NEW COLLECTION</h1>
+                <h1 class="page-title" id="page-title">MENSWEAR</h1>
+                <p class="page-subtitle">Sophisticated styles for the modern gentleman</p>
             </div>
-
-
+            <div class="hero-bg-overlay"></div>
         </section>
 
-        <!-- Animated Scroll Sections -->
-        <section class="scroll-sections-container">
-            <spline-viewer url="https://prod.spline.design/SAPSQsO7AOcTr2v3/scene.splinecode" class="spline-background"></spline-viewer>
-            <div class="scroll-sections-overlay"></div>
+        <!-- Category Filter Section -->
+        <section class="category-filter-section">
             <div class="container">
-                <div class="scroll-section" data-section="1">
-                    <div class="content-grid">
-                        <div class="image-container" data-direction="left">
-                            <div class="image-wrapper">
-                                <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop&crop=center" alt="Fashion Collection 1" class="reveal-image">
-                            </div>
-                        </div>
-                        <div class="text-container">
-                            <h2 class="section-title">Premium Fashion Collection</h2>
-                            <p class="section-description">Discover our latest collection featuring innovative designs that blend contemporary style with timeless elegance. Each piece is crafted with attention to detail and quality materials.</p>
-                            <div class="design-line horizontal"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="scroll-section reverse" data-section="2">
-                    <div class="content-grid">
-                        <div class="text-container">
-                            <h2 class="section-title">Sustainable Materials</h2>
-                            <p class="section-description">Our commitment to sustainability drives us to use eco-friendly materials and ethical production processes. Fashion that looks good and feels good about its impact on the world.</p>
-                            <div class="design-line vertical"></div>
-                        </div>
-                        <div class="image-container" data-direction="right">
-                            <div class="image-wrapper">
-                                <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=600&h=400&fit=crop&crop=center" alt="Sustainable Fashion" class="reveal-image">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="scroll-section" data-section="3">
-                    <div class="content-grid">
-                        <div class="image-container" data-direction="left">
-                            <div class="image-wrapper">
-                                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=400&fit=crop&crop=center" alt="Modern Design" class="reveal-image">
-                            </div>
-                        </div>
-                        <div class="text-container">
-                            <h2 class="section-title">Modern Aesthetics</h2>
-                            <p class="section-description">Experience the perfect fusion of modern aesthetics and functional design. Our pieces are created for the contemporary individual who values both style and substance.</p>
-                            <div class="design-line diagonal"></div>
-                        </div>
-                    </div>
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">View All</button>
+                    <button class="filter-btn" data-category="polo">Polo</button>
+                    <button class="filter-btn" data-category="sweater">Knitwear</button>
+                    <button class="filter-btn" data-category="tshirt">T-shirt</button>
                 </div>
             </div>
         </section>
 
-        <!-- Men's Best Seller Section -->
-        <section class="bestseller-section">
+        <!-- Products Grid Section -->
+        <section class="menswear-products-section">
             <div class="container">
-                <h2 class="bestseller-title">MEN'S BEST SELLER</h2>
-                <div class="products-grid">
-                    <div class="product-card" data-product="1">
+                <div class="products-grid" id="products-grid">
+                    
+                    <!-- Key Products with proper data-product-id -->
+                    <div class="product-card" data-category="polo" data-product-id="obsidian">
                         <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop&crop=center" alt="AKROSE Sweater" class="product-img">
+                            <img src="https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=400&h=500&fit=crop&crop=center" alt="Obsidian Polo" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">AKROSE</h3>
-                            <p class="product-description">Maglia girocollo in cotone organico.</p>
-                            <span class="product-price">€ 72.00</span>
+                            <h3 class="product-name">OBSIDIAN</h3>
+                            <p class="product-description">Polo with zip and contrast details.</p>
+                            <span class="product-price">₹ 9,810</span>
                         </div>
                     </div>
 
-                    <div class="product-card" data-product="2">
+                    <div class="product-card" data-category="polo" data-product-id="tephra">
                         <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=500&fit=crop&crop=center" alt="CATINITE Sweater" class="product-img">
+                            <img src="https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=400&h=500&fit=crop&crop=center" alt="Tephra Polo" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
                         </div>
                         <div class="product-info">
-                            <h3 class="product-name">CATINITE</h3>
-                            <p class="product-description">Maglia girocollo con dettaglio a contrasto.</p>
-                            <span class="product-price">€ 109.00</span>
+                            <h3 class="product-name">TEPHRA</h3>
+                            <p class="product-description">Essential organic cotton polo.</p>
+                            <span class="product-price">₹ 6,210</span>
                         </div>
                     </div>
 
-                    <div class="product-card" data-product="3">
+                    <div class="product-card" data-category="sweater" data-product-id="diorite">
                         <div class="product-image">
-                            <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=400&h=500&fit=crop&crop=center" alt="BASALT Sweater" class="product-img">
+                            <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=400&h=500&fit=crop&crop=center" alt="Diorite Cardigan" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">DIORITE</h3>
+                            <p class="product-description">Cotton and cashmere cardigan.</p>
+                            <span class="product-price">₹ 11,610</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sweater" data-product-id="septaria">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=500&fit=crop&crop=center" alt="Septaria Sweater" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">SEPTARIA</h3>
+                            <p class="product-description">Crew neck sweater in cotton and cashmere.</p>
+                            <span class="product-price">₹ 9,810</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card" data-category="sweater" data-product-id="basalt">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=400&h=500&fit=crop&crop=center" alt="Basalt Sweater" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
                         </div>
                         <div class="product-info">
                             <h3 class="product-name">BASALT</h3>
-                            <p class="product-description">Maglia girocollo in cashmere tinto a mano.</p>
-                            <span class="product-price">€ 189.00</span>
+                            <p class="product-description">Hand-dyed cashmere crew neck sweater.</p>
+                            <span class="product-price">₹ 17,010</span>
                         </div>
                     </div>
 
-                    
+                    <div class="product-card" data-category="tshirt" data-product-id="travertine">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&h=500&fit=crop&crop=center" alt="Travertine T-shirt" class="product-img">
+                            <div class="product-overlay">
+                                <button class="discover-btn">Discover Now</button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name">TRAVERTINE</h3>
+                            <p class="product-description">Cotton and cashmere t-shirt.</p>
+                            <span class="product-price">₹ 7,380</span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -204,7 +212,7 @@
                     <div class="footer-section">
                         <h3 class="footer-title">Shop</h3>
                         <ul class="footer-links">
-                            <li><a href="#">Menswear</a></li>
+                            <li><a href="menswear.html">Menswear</a></li>
                             <li><a href="#">Limited Edition</a></li>
                             <li><a href="#">New Arrivals</a></li>
                             <li><a href="#">Best Sellers</a></li>
@@ -274,6 +282,6 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="menswear.js"></script>
 </body>
 </html>
