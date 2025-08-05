@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <!-- Asterisk part of the logo -->
+  <path d="M30 20 L50 40 L30 60 M20 40 L60 40 M30 20 L30 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- ZeeClothes text using more standard paths -->
+  <!-- Z -->
+  <path d="M80 20 L110 20 L80 60 L110 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- ee -->
+  <path d="M120 30 Q120 20 130 20 Q140 20 140 30 L140 40 L120 40 Q120 50 130 50 Q140 50 140 40" stroke="white" stroke-width="3" fill="none"/>
+  <path d="M150 30 Q150 20 160 20 Q170 20 170 30 L170 40 L150 40 Q150 50 160 50 Q170 50 170 40" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- C -->
+  <path d="M190 25 Q180 35 180 40 Q180 45 190 55" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- l -->
+  <path d="M200 20 L200 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- o -->
+  <path d="M210 30 Q210 20 220 20 Q230 20 230 30 L230 50 Q230 60 220 60 Q210 60 210 50 Z" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- t -->
+  <path d="M240 20 L240 60 M230 30 L250 30" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- h -->
+  <path d="M260 20 L260 60 M260 35 Q260 30 270 30 Q280 30 280 35 L280 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- e -->
+  <path d="M290 30 Q290 20 300 20 Q310 20 310 30 L310 40 L290 40 Q290 50 300 50 Q310 50 310 40" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- s -->
+  <path d="M320 25 Q330 20 340 25 Q330 35 330 40 Q330 45 340 55" stroke="white" stroke-width="3" fill="none"/>
+</svg>

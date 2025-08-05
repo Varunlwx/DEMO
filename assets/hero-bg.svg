@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <!-- Background gradient -->
+  <defs>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a2a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Texture pattern -->
+    <pattern id="texture" width="200" height="200" patternUnits="userSpaceOnUse">
+      <path d="M0,50 Q50,0 100,50 T200,50 M0,150 Q50,100 100,150 T200,150" 
+            fill="none" stroke="#4a3a2a" stroke-width="1" opacity="0.3" />
+      <path d="M50,0 Q100,50 150,0 M50,100 Q100,150 150,100 M50,200 Q100,250 150,200" 
+            fill="none" stroke="#4a3a2a" stroke-width="1" opacity="0.3" />
+    </pattern>
+    
+    <!-- Rock-like shapes -->
+    <filter id="displacementFilter">
+      <feTurbulence type="turbulence" baseFrequency="0.01" numOctaves="3" result="turbulence" />
+      <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="50" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+  
+  <!-- Main background -->
+  <rect width="100%" height="100%" fill="url(#bg-gradient)" />
+  
+  <!-- Texture overlay -->
+  <rect width="100%" height="100%" fill="url(#texture)" opacity="0.6" />
+  
+  <!-- Rock-like formations -->
+  <g opacity="0.7" filter="url(#displacementFilter)">
+    <path d="M0,1080 L0,800 Q300,750 600,850 T1200,800 T1920,850 L1920,1080 Z" 
+          fill="#2a1a0a" opacity="0.8" />
+    <path d="M0,1080 L0,900 Q400,850 800,950 T1600,900 T1920,950 L1920,1080 Z" 
+          fill="#3a2a1a" opacity="0.6" />
+    <path d="M0,1080 L0,950 Q500,900 1000,1000 T1920,950 L1920,1080 Z" 
+          fill="#4a3a2a" opacity="0.4" />
+  </g>
+  
+  <!-- Vignette effect -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="70%" fx="50%" fy="50%">
+    <stop offset="0%" style="stop-color:#000000;stop-opacity:0" />
+    <stop offset="100%" style="stop-color:#000000;stop-opacity:0.7" />
+  </radialGradient>
+  <rect width="100%" height="100%" fill="url(#vignette)" />
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" width="200" height="80">
+  <!-- Asterisk part of the logo -->
+  <path d="M30 20 L50 40 L30 60 M20 40 L60 40 M30 20 L30 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <!-- AKKE text -->
+  <path d="M80 20 L70 60 L75 60 L85 20 Z" stroke="white" stroke-width="3" fill="none"/>
+  <path d="M75 40 L85 40" stroke="white" stroke-width="3"/>
+  
+  <path d="M95 20 L95 60 M95 20 L110 60 M110 20 L110 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <path d="M120 20 L120 60 M120 20 L135 60 M135 20 L135 60" stroke="white" stroke-width="3" fill="none"/>
+  
+  <path d="M145 20 L145 60 M145 20 L160 40 L145 60" stroke="white" stroke-width="3" fill="none"/>
+</svg>
