@@ -5,9 +5,9 @@ const PRODUCTS_DATA = {
         price: '₹ 9,810',
         description: 'Organic cotton polo with textured finish, front zip and two-tone sleeves for a distinctive look.',
         images: [
-            'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=750&fit=crop&crop=center'
+            'assets/images/PLANE_SHIRT.png',
+            'assets/images/SHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_TSHIRT.png'
         ],
         colors: [
             { name: 'Orange', value: '#FF6B35', active: true },
@@ -34,9 +34,9 @@ const PRODUCTS_DATA = {
         price: '₹ 6,210',
         description: 'Essential organic cotton polo, minimal design and superior comfort for timeless style.',
         images: [
-            'https://images.unsplash.com/photo-1621072156002-e2fccdc0b176?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1586790170083-2f9ceadc732d?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=600&h=750&fit=crop&crop=center'
+            'assets/images/SHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_SHIRT.png',
+            'assets/images/TSHIRT_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Grey', value: '#6B7280', active: true },
@@ -62,9 +62,9 @@ const PRODUCTS_DATA = {
         price: '₹ 11,610',
         description: 'Cotton and cashmere cardigan, softness and elegance for luxury comfort.',
         images: [
-            'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=750&fit=crop&crop=center'
+            'assets/images/Hoddie_IMAGE.jpeg',
+            'assets/images/PLANE_HODDIE.png',
+            'assets/images/JACKET_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Beige', value: '#D4C5B9', active: true },
@@ -90,9 +90,9 @@ const PRODUCTS_DATA = {
         price: '₹ 9,810',
         description: 'Crew neck sweater in cotton and cashmere, refined texture for a sophisticated look.',
         images: [
-            'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&h=750&fit=crop&crop=center'
+            'assets/images/PLANE_HODDIE.png',
+            'assets/images/Hoddie_IMAGE.jpeg',
+            'assets/images/JACKET_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Dark Blue', value: '#1E3A8A', active: true },
@@ -118,9 +118,9 @@ const PRODUCTS_DATA = {
         price: '₹ 17,010',
         description: 'Hand-dyed cashmere crew neck sweater, absolute luxury and supreme comfort.',
         images: [
-            'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=600&h=750&fit=crop&crop=center'
+            'assets/images/JACKET_IMAGE.jpeg',
+            'assets/images/Suit_image.jpeg',
+            'assets/images/SHADY_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Black', value: '#000000', active: true },
@@ -146,9 +146,9 @@ const PRODUCTS_DATA = {
         price: '₹ 7,380',
         description: 'Cotton and cashmere t-shirt, everyday softness with a touch of luxury.',
         images: [
-            'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1583743814966-8936f37f86d6?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=750&fit=crop&crop=center'
+            'assets/images/PLANE_TSHIRT.png',
+            'assets/images/TSHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_SHIRT.png'
         ],
         colors: [
             { name: 'White', value: '#FFFFFF', active: true },
@@ -174,9 +174,9 @@ const PRODUCTS_DATA = {
         price: '₹ 8,550',
         description: 'Lightweight crew neck sweater, comfort and style for every occasion.',
         images: [
-            'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=750&fit=crop&crop=center'
+            'assets/images/TSHIRT_IMAGE.jpeg',
+            'assets/images/Hoddie_IMAGE.jpeg',
+            'assets/images/PLANE_HODDIE.png'
         ],
         colors: [
             { name: 'Natural Beige', value: '#F5F5DC', active: true },
@@ -202,9 +202,9 @@ const PRODUCTS_DATA = {
         price: '₹ 8,550',
         description: 'Cotton and cashmere crew neck sweater, everyday elegance with superior comfort.',
         images: [
-            'https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1562157873-818bc0726f68?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?w=600&h=750&fit=crop&crop=center'
+            'assets/images/Suit_image.jpeg',
+            'assets/images/JACKET_IMAGE.jpeg',
+            'assets/images/SHADY_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Slate Grey', value: '#708090', active: true },
@@ -230,9 +230,9 @@ const PRODUCTS_DATA = {
         price: '₹ 5,580',
         description: 'Organic cotton t-shirt with front logo, casual style and sustainable.',
         images: [
-            'https://images.unsplash.com/photo-1583743814966-8936f37f86d6?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=750&fit=crop&crop=center'
+            'assets/images/TSHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_TSHIRT.png',
+            'assets/images/SHIRT_IMAGE.jpeg'
         ],
         colors: [
             { name: 'Forest Green', value: '#228B22', active: true },
@@ -258,9 +258,9 @@ const PRODUCTS_DATA = {
         price: '₹ 6,210',
         description: 'Organic cotton t-shirt, essential and versatile for every moment of the day.',
         images: [
-            'https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1583743814966-8936f37f86d6?w=600&h=750&fit=crop&crop=center',
-            'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=750&fit=crop&crop=center'
+            'assets/images/PLANE_TSHIRT.png',
+            'assets/images/TSHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_SHIRT.png'
         ],
         colors: [
             { name: 'Pure White', value: '#FFFFFF', active: true },
@@ -280,6 +280,90 @@ const PRODUCTS_DATA = {
             'Pre-shrunk fabric'
         ],
         category: 'tshirt'
+    },
+    'cotton-classic': {
+        name: 'COTTON CLASSIC',
+        price: '₹ 5,490',
+        description: 'Premium organic cotton t-shirt, essential comfort for everyday wear.',
+        images: [
+            'assets/images/TSHIRT_IMAGE.jpeg',
+            'assets/images/PLANE_TSHIRT.png',
+            'assets/images/SHIRT_IMAGE.jpeg'
+        ],
+        colors: [
+            { name: 'White', value: '#FFFFFF', active: true },
+            { name: 'Black', value: '#000000', active: false },
+            { name: 'Navy', value: '#1E3A8A', active: false }
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        details: [
+            'Premium organic cotton',
+            'Classic crew neck',
+            'Regular fit',
+            'Reinforced seams',
+            'Soft hand feel'
+        ],
+        materials: [
+            '100% Organic Cotton',
+            'GOTS certified'
+        ],
+        category: 'tshirt'
+    },
+    'denim-casual': {
+        name: 'DENIM CASUAL',
+        price: '₹ 12,990',
+        description: 'Premium denim with modern fit, classic style with contemporary comfort.',
+        images: [
+            'assets/images/JEANS_IMAGE.jpeg',
+            'assets/images/SHADY_IMAGE.jpeg',
+            'assets/images/Suit_image.jpeg'
+        ],
+        colors: [
+            { name: 'Indigo Blue', value: '#4B0082', active: true },
+            { name: 'Black', value: '#000000', active: false },
+            { name: 'Light Wash', value: '#6495ED', active: false }
+        ],
+        sizes: ['28', '30', '32', '34', '36', '38'],
+        details: [
+            'Premium denim fabric',
+            'Modern tapered fit',
+            '5-pocket styling',
+            'YKK zipper',
+            'Reinforced stress points'
+        ],
+        materials: [
+            '98% Cotton',
+            '2% Elastane'
+        ],
+        category: 'polo'
+    },
+    'formal-suit': {
+        name: 'FORMAL SUIT',
+        price: '₹ 24,990',
+        description: 'Tailored wool blend suit, sophisticated elegance for formal occasions.',
+        images: [
+            'assets/images/Suit_image.jpeg',
+            'assets/images/JACKET_IMAGE.jpeg',
+            'assets/images/SHADY_IMAGE.jpeg'
+        ],
+        colors: [
+            { name: 'Charcoal Grey', value: '#36454F', active: true },
+            { name: 'Navy Blue', value: '#1E3A8A', active: false },
+            { name: 'Black', value: '#000000', active: false }
+        ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL'],
+        details: [
+            'Tailored wool blend',
+            'Slim fit cut',
+            'Notched lapel',
+            'Two-button closure',
+            'Interior pockets'
+        ],
+        materials: [
+            '70% Wool',
+            '30% Polyester'
+        ],
+        category: 'sweater'
     }
 };
 

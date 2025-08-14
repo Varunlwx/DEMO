@@ -1511,7 +1511,7 @@ spline-viewer {
 .menswear-hero {
     height: 60vh;
     background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(20,20,20,0.9) 100%),
-                url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1920&h=1080&fit=crop&crop=center');
+                url('assets/images/SHADY_IMAGE.jpeg');
     background-size: cover;
     background-position: center;
     position: relative;
