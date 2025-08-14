@@ -1,3 +1,21 @@
+// Global cart count update function
+function updateGlobalCartCount() {
+    const savedCart = localStorage.getItem('zeeclothes_cart');
+    const cart = savedCart ? JSON.parse(savedCart) : [];
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    console.log('Global cart count update:', count);
+    console.log('Cart from localStorage:', cart);
+    
+    const cartCountElements = document.querySelectorAll('#cart-count');
+    console.log('Found cart count elements:', cartCountElements.length);
+    
+    cartCountElements.forEach(element => {
+        element.textContent = count;
+        console.log('Updated element:', element, 'to count:', count);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Register GSAP ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +31,9 @@ document.addEventListener('DOMContentLoaded', function() {
         limitCallbacks: true,
         ignoreMobileResize: true
     });
+    
+    // Update cart count
+    updateGlobalCartCount();
     
     // Initialize loading screen
     initLoadingScreen();
@@ -42,11 +63,21 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.getElementById('hamburger-menu');
     const mobileMenu = document.getElementById('mobile-menu');
     
+    console.log('Mobile menu elements found:', {
+        hamburgerMenu: !!hamburgerMenu,
+        mobileMenu: !!mobileMenu
+    });
+    
     if (hamburgerMenu && mobileMenu) {
         hamburgerMenu.addEventListener('click', function() {
             mobileMenu.classList.toggle('active');
             hamburgerMenu.classList.toggle('active');
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            
+            console.log('Mobile menu toggled:', {
+                isActive: mobileMenu.classList.contains('active'),
+                menuItems: mobileMenu.querySelectorAll('li').length
+            });
         });
         
         // Close mobile menu when clicking on a link
@@ -716,4 +747,354 @@ document.addEventListener('DOMContentLoaded', function() {
     // Console message for developers
     console.log('🎉 ZeeClothes Menswear page loaded successfully!');
     console.log('✨ Featuring sophisticated animations and modern interactions');
+});
+
+// Product Database
+const products = [
+    {
+        id: 'obsidian',
+        name: 'OBSIDIAN',
+        description: 'Polo with zip and contrast details.',
+        price: 9810,
+        image: 'assets/images/PLANE_SHIRT.png',
+        category: 'polo',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['Black', 'Navy', 'White']
+    },
+    {
+        id: 'tephra',
+        name: 'TEPHRA',
+        description: 'Essential organic cotton polo.',
+        price: 6210,
+        image: 'assets/images/SHIRT_IMAGE.jpeg',
+        category: 'polo',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['White', 'Black', 'Grey']
+    },
+    {
+        id: 'diorite',
+        name: 'DIORITE',
+        description: 'Cotton and cashmere cardigan.',
+        price: 11610,
+        image: 'assets/images/Hoddie_IMAGE.jpeg',
+        category: 'sweater',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['Navy', 'Grey', 'Black']
+    },
+    {
+        id: 'septaria',
+        name: 'SEPTARIA',
+        description: 'Crew neck sweater in cotton and cashmere.',
+        price: 9810,
+        image: 'assets/images/PLANE_HODDIE.png',
+        category: 'sweater',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['Black', 'Grey', 'Navy']
+    },
+    {
+        id: 'basalt',
+        name: 'BASALT',
+        description: 'Hand-dyed cashmere crew neck sweater.',
+        price: 17010,
+        image: 'assets/images/JACKET_IMAGE.jpeg',
+        category: 'sweater',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['Navy', 'Black', 'Grey']
+    },
+    {
+        id: 'travertine',
+        name: 'TRAVERTINE',
+        description: 'Cotton and cashmere t-shirt.',
+        price: 7380,
+        image: 'assets/images/PLANE_TSHIRT.png',
+        category: 'tshirt',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['White', 'Black', 'Grey']
+    },
+    {
+        id: 'cotton-classic',
+        name: 'COTTON CLASSIC',
+        description: 'Premium organic cotton t-shirt.',
+        price: 5490,
+        image: 'assets/images/TSHIRT_IMAGE.jpeg',
+        category: 'tshirt',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['White', 'Black', 'Navy']
+    },
+    {
+        id: 'denim-casual',
+        name: 'DENIM CASUAL',
+        description: 'Premium denim with modern fit.',
+        price: 12990,
+        image: 'assets/images/JEANS_IMAGE.jpeg',
+        category: 'polo',
+        sizes: ['30', '32', '34', '36'],
+        colors: ['Blue', 'Black', 'Grey']
+    },
+    {
+        id: 'formal-suit',
+        name: 'FORMAL SUIT',
+        description: 'Tailored wool blend suit.',
+        price: 24990,
+        image: 'assets/images/Suit_image.jpeg',
+        category: 'sweater',
+        sizes: ['S', 'M', 'L', 'XL'],
+        colors: ['Navy', 'Black', 'Grey']
+    }
+];
+
+// Cart Management
+class CartManager {
+    constructor() {
+        console.log('CartManager constructor called');
+        this.cart = this.loadCart();
+        console.log('Initial cart loaded:', this.cart);
+        this.updateCartCount();
+        this.bindEvents();
+        console.log('CartManager constructor completed');
+    }
+
+    loadCart() {
+        const savedCart = localStorage.getItem('zeeclothes_cart');
+        return savedCart ? JSON.parse(savedCart) : [];
+    }
+
+    saveCart() {
+        localStorage.setItem('zeeclothes_cart', JSON.stringify(this.cart));
+    }
+
+    addToCart(product, size = 'M', quantity = 1) {
+        console.log('Adding to cart:', { product, size, quantity });
+        
+        const existingItem = this.cart.find(item => 
+            item.id === product.id && item.size === size
+        );
+
+        if (existingItem) {
+            existingItem.quantity += quantity;
+            console.log('Updated existing item quantity to:', existingItem.quantity);
+        } else {
+            this.cart.push({
+                ...product,
+                size: size,
+                quantity: quantity
+            });
+            console.log('Added new item to cart');
+        }
+
+        console.log('Current cart:', this.cart);
+        this.saveCart();
+        this.updateCartCount();
+        this.showAddToCartNotification(product.name);
+    }
+
+    updateCartCount() {
+        console.log('Updating cart count...');
+        updateGlobalCartCount();
+        
+        // Dispatch custom event to notify other pages
+        const count = this.cart.reduce((total, item) => total + item.quantity, 0);
+        console.log('Cart count:', count);
+        window.dispatchEvent(new CustomEvent('cartUpdated', { detail: { count } }));
+    }
+
+    showAddToCartNotification(productName) {
+        // Create notification
+        const notification = document.createElement('div');
+        notification.className = 'notification success';
+        notification.innerHTML = `
+            <i class="fas fa-check-circle"></i>
+            <span>${productName} added to cart!</span>
+            <button onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Auto remove after 3 seconds
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 3000);
+    }
+
+    bindEvents() {
+        // Add click handlers to "Discover Now" buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('discover-btn')) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Discover button clicked!');
+                
+                const productCard = e.target.closest('.product-card');
+                if (productCard) {
+                    const productId = productCard.dataset.productId;
+                    console.log('Product ID:', productId);
+                    
+                    const product = products.find(p => p.id === productId);
+                    if (product) {
+                        console.log('Product found:', product);
+                        this.showQuickAddModal(product);
+                    } else {
+                        console.log('Product not found for ID:', productId);
+                        console.log('Available products:', products.map(p => p.id));
+                    }
+                } else {
+                    console.log('Product card not found');
+                }
+            }
+        });
+        
+        // Test button functionality
+        const testBtn = document.getElementById('test-cart-btn');
+        if (testBtn) {
+            testBtn.addEventListener('click', () => {
+                console.log('Test button clicked!');
+                const testProduct = {
+                    id: 'test-product',
+                    name: 'Test Product',
+                    description: 'This is a test product',
+                    price: 1000,
+                    image: 'assets/images/PLANE_SHIRT.png',
+                    sizes: ['S', 'M', 'L', 'XL']
+                };
+                this.addToCart(testProduct, 'M', 1);
+            });
+        }
+    }
+
+    showQuickAddModal(product) {
+        console.log('Showing modal for product:', product);
+        
+        // Create modal
+        const modal = document.createElement('div');
+        modal.className = 'quick-add-modal';
+        modal.innerHTML = `
+            <div class="modal-overlay"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add to Cart</h3>
+                    <button class="modal-close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="product-preview">
+                        <img src="${product.image}" alt="${product.name}">
+                        <div class="product-info">
+                            <h4>${product.name}</h4>
+                            <p>${product.description}</p>
+                            <span class="price">₹${product.price.toLocaleString()}</span>
+                        </div>
+                    </div>
+                    <div class="size-selection">
+                        <label>Select Size:</label>
+                        <div class="size-options">
+                            ${product.sizes.map(size => `
+                                <button class="size-btn" data-size="${size}">${size}</button>
+                            `).join('')}
+                        </div>
+                    </div>
+                    <div class="quantity-selection">
+                        <label>Quantity:</label>
+                        <div class="quantity-controls">
+                            <button class="qty-btn minus">-</button>
+                            <span class="qty-value">1</span>
+                            <button class="qty-btn plus">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(modal);
+
+        // Modal functionality
+        let selectedSize = product.sizes[0];
+        let quantity = 1;
+
+        // Size selection
+        modal.querySelectorAll('.size-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedSize = btn.dataset.size;
+            });
+        });
+
+        // Quantity controls
+        modal.querySelector('.minus').addEventListener('click', () => {
+            if (quantity > 1) {
+                quantity--;
+                modal.querySelector('.qty-value').textContent = quantity;
+            }
+        });
+
+        modal.querySelector('.plus').addEventListener('click', () => {
+            quantity++;
+            modal.querySelector('.qty-value').textContent = quantity;
+        });
+
+        // Add to cart
+        modal.querySelector('.add-to-cart-btn').addEventListener('click', () => {
+            console.log('Add to cart clicked!', { product, selectedSize, quantity });
+            this.addToCart(product, selectedSize, quantity);
+            this.closeModal(modal);
+        });
+
+        // Close modal
+        modal.querySelector('.modal-close').addEventListener('click', () => {
+            this.closeModal(modal);
+        });
+
+        modal.querySelector('.modal-overlay').addEventListener('click', () => {
+            this.closeModal(modal);
+        });
+
+        // Select first size by default
+        modal.querySelector('.size-btn').classList.add('selected');
+    }
+
+    closeModal(modal) {
+        modal.style.opacity = '0';
+        setTimeout(() => {
+            if (modal.parentElement) {
+                modal.parentElement.removeChild(modal);
+            }
+        }, 300);
+    }
+}
+
+// Initialize cart manager
+console.log('Initializing CartManager...');
+let cartManager;
+
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    try {
+        cartManager = new CartManager();
+        console.log('CartManager initialized:', cartManager);
+        
+        // Test if cart manager is working
+        console.log('Testing cart functionality...');
+        console.log('Cart manager methods:', Object.getOwnPropertyNames(Object.getPrototypeOf(cartManager)));
+        
+    } catch (error) {
+        console.error('Error initializing CartManager:', error);
+    }
+});
+
+// Listen for cart changes from other pages
+window.addEventListener('storage', function(e) {
+    if (e.key === 'zeeclothes_cart') {
+        updateGlobalCartCount();
+    }
+});
+
+// Listen for custom cart update events
+window.addEventListener('cartUpdated', function(e) {
+    updateGlobalCartCount();
 });

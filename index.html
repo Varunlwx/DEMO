@@ -30,27 +30,29 @@
     </div>
 
     <header>
-        <div class="logo">
-            <a href="#">
-                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
-            </a>
-        </div>
-        <nav>
-            <ul class="main-menu">
-                <li><a href="menswear.html">MENSWEAR</a></li>
-                <li><a href="#">LIMITED</a></li>
-                <li><a href="#">ZEEWORLD</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger-menu" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="user-menu">
-            <a href="#">LOGIN</a>
-            <a href="#">CART(0)</a>
-            <a href="#">EN</a>
+        <div class="header-content">
+            <div class="logo">
+                <a href="#">
+                    <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="menswear.html">MENSWEAR</a></li>
+                    <li><a href="#">LIMITED</a></li>
+                    <li><a href="#">ZEEWORLD</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="user-menu">
+                <a href="login.html">LOGIN</a>
+                <a href="cart.html">CART(<span id="cart-count">0</span>)</a>
+                <a href="#">EN</a>
+            </div>
         </div>
     </header>
     
@@ -66,7 +68,6 @@
 
     <main>
         <section class="hero-section">
-            <spline-viewer url="https://prod.spline.design/6iA8vQHQeyir23p6/scene.splinecode"></spline-viewer>
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="hero-title" id="hero-title">NEW COLLECTION</h1>
@@ -275,5 +276,87 @@
     </footer>
 
     <script src="script.js"></script>
+    
+    <!-- Mobile Menu JavaScript -->
+    <script>
+        // Wait for page to load
+        window.addEventListener('load', function() {
+            console.log('Page loaded, initializing mobile menu on index');
+            
+            // Get elements
+            var hamburger = document.getElementById('hamburger-menu');
+            var mobileMenu = document.getElementById('mobile-menu');
+            
+            console.log('Hamburger found:', !!hamburger);
+            console.log('Mobile menu found:', !!mobileMenu);
+            
+            if (hamburger && mobileMenu) {
+                // Add click event
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Opening mobile menu');
+                    
+                    // Create working mobile menu
+                    var workingMenu = document.createElement('div');
+                    
+                    // Professional mobile menu using the working approach
+                    workingMenu.innerHTML = '<div style="text-align: center; padding: 20px; margin-top: 80px;"><h2 style="color: white; margin: 40px 0; font-size: 36px; font-family: Oswald, sans-serif; letter-spacing: 3px;">MENU</h2><a href="menswear.html" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">MENSWEAR</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LIMITED</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">ZEEWORLD</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LOGIN</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">CART(0)</a></div>';
+                    
+                    // Style the main menu container - Dark professional background
+                    workingMenu.style.position = 'fixed';
+                    workingMenu.style.top = '0';
+                    workingMenu.style.left = '0';
+                    workingMenu.style.width = '100%';
+                    workingMenu.style.height = '100%';
+                    workingMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.92)'; // Dark professional background
+                    workingMenu.style.zIndex = '9999999';
+                    workingMenu.style.display = 'block';
+                    workingMenu.style.overflow = 'auto';
+                    workingMenu.id = 'working-mobile-menu';
+                    
+                    // Add close functionality when clicking on links
+                    workingMenu.addEventListener('click', function(e) {
+                        if (e.target.tagName === 'A') {
+                            document.body.removeChild(workingMenu);
+                            hamburger.classList.remove('active');
+                            document.body.style.overflow = '';
+                            console.log('Mobile menu closed');
+                        }
+                    });
+                    
+                    // Add close functionality when clicking background
+                    workingMenu.addEventListener('click', function(e) {
+                        if (e.target === workingMenu) {
+                            document.body.removeChild(workingMenu);
+                            hamburger.classList.remove('active');
+                            document.body.style.overflow = '';
+                            console.log('Mobile menu closed');
+                        }
+                    });
+                    
+                    document.body.appendChild(workingMenu);
+                    document.body.style.overflow = 'hidden';
+                    
+                    console.log('Mobile menu opened successfully');
+                });
+                
+                // Close menu when clicking links
+                var menuLinks = mobileMenu.querySelectorAll('a');
+                for (var i = 0; i < menuLinks.length; i++) {
+                    menuLinks[i].addEventListener('click', function() {
+                        mobileMenu.classList.remove('active');
+                        hamburger.classList.remove('active');
+                        document.body.style.overflow = '';
+                        console.log('Menu closed via link on index');
+                    });
+                }
+                
+                console.log('Mobile menu initialized successfully on index');
+            } else {
+                console.error('Mobile menu elements not found on index');
+            }
+        });
+    </script>
 </body>
 </html>

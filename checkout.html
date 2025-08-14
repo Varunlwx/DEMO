@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - ZeeClothes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
+        </marquee>
+    </div>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="menswear.html">MENSWEAR</a></li>
+                <li><a href="#">LIMITED</a></li>
+                <li><a href="#">ZEEWORLD</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="user-menu">
+            <a href="login.html">LOGIN</a>
+            <a href="cart.html">CART(<span id="cart-count">0</span>)</a>
+            <a href="#">EN</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb Section -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <a href="cart.html">Cart</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Checkout</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Checkout Section -->
+        <section class="checkout-section">
+            <div class="container">
+                <div class="checkout-header">
+                    <h1 class="checkout-title">Checkout</h1>
+                    <p class="checkout-subtitle">Complete your purchase</p>
+                </div>
+
+                <div class="checkout-content">
+                    <!-- Checkout Form -->
+                    <div class="checkout-form-container">
+                        <form class="checkout-form" id="checkout-form">
+                            <!-- Shipping Information -->
+                            <div class="form-section">
+                                <h3 class="section-title">
+                                    <i class="fas fa-shipping-fast"></i>
+                                    Shipping Information
+                                </h3>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name *</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name *</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label for="phone">Phone Number *</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                    <div class="form-group full-width">
+                                        <label for="address">Street Address *</label>
+                                        <input type="text" id="address" name="address" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="city">City *</label>
+                                        <input type="text" id="city" name="city" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="state">State *</label>
+                                        <select id="state" name="state" required>
+                                            <option value="">Select State</option>
+                                            <option value="Delhi">Delhi</option>
+                                            <option value="Mumbai">Mumbai</option>
+                                            <option value="Bangalore">Bangalore</option>
+                                            <option value="Chennai">Chennai</option>
+                                            <option value="Kolkata">Kolkata</option>
+                                            <option value="Hyderabad">Hyderabad</option>
+                                            <option value="Pune">Pune</option>
+                                            <option value="Ahmedabad">Ahmedabad</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zipCode">ZIP Code *</label>
+                                        <input type="text" id="zipCode" name="zipCode" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Method -->
+                            <div class="form-section">
+                                <h3 class="section-title">
+                                    <i class="fas fa-truck"></i>
+                                    Shipping Method
+                                </h3>
+                                <div class="shipping-options">
+                                    <div class="shipping-option">
+                                        <input type="radio" id="standard" name="shipping" value="standard" checked>
+                                        <label for="standard">
+                                            <div class="option-content">
+                                                <div class="option-info">
+                                                    <h4>Standard Delivery</h4>
+                                                    <p>5-7 business days</p>
+                                                </div>
+                                                <div class="option-price">₹500</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="shipping-option">
+                                        <input type="radio" id="express" name="shipping" value="express">
+                                        <label for="express">
+                                            <div class="option-content">
+                                                <div class="option-info">
+                                                    <h4>Express Delivery</h4>
+                                                    <p>2-3 business days</p>
+                                                </div>
+                                                <div class="option-price">₹1,200</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="shipping-option free">
+                                        <input type="radio" id="free" name="shipping" value="free">
+                                        <label for="free">
+                                            <div class="option-content">
+                                                <div class="option-info">
+                                                    <h4>Free Shipping</h4>
+                                                    <p>Orders above ₹31,500</p>
+                                                </div>
+                                                <div class="option-price">FREE</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Method -->
+                            <div class="form-section">
+                                <h3 class="section-title">
+                                    <i class="fas fa-credit-card"></i>
+                                    Payment Method
+                                </h3>
+                                <div class="payment-options">
+                                    <div class="payment-option">
+                                        <input type="radio" id="card" name="payment" value="card" checked>
+                                        <label for="card">
+                                            <i class="fas fa-credit-card"></i>
+                                            Credit/Debit Card
+                                        </label>
+                                    </div>
+                                    <div class="payment-option">
+                                        <input type="radio" id="upi" name="payment" value="upi">
+                                        <label for="upi">
+                                            <i class="fas fa-mobile-alt"></i>
+                                            UPI
+                                        </label>
+                                    </div>
+                                    <div class="payment-option">
+                                        <input type="radio" id="netbanking" name="payment" value="netbanking">
+                                        <label for="netbanking">
+                                            <i class="fas fa-university"></i>
+                                            Net Banking
+                                        </label>
+                                    </div>
+                                    <div class="payment-option">
+                                        <input type="radio" id="cod" name="payment" value="cod">
+                                        <label for="cod">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                            Cash on Delivery
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <!-- Card Details (shown when card is selected) -->
+                                <div class="card-details" id="card-details">
+                                    <div class="form-grid">
+                                        <div class="form-group full-width">
+                                            <label for="cardNumber">Card Number *</label>
+                                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="expiry">Expiry Date *</label>
+                                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cvv">CVV *</label>
+                                            <input type="text" id="cvv" name="cvv" placeholder="123">
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label for="cardName">Name on Card *</label>
+                                            <input type="text" id="cardName" name="cardName">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Order Notes -->
+                            <div class="form-section">
+                                <h3 class="section-title">
+                                    <i class="fas fa-sticky-note"></i>
+                                    Order Notes (Optional)
+                                </h3>
+                                <div class="form-group">
+                                    <textarea id="orderNotes" name="orderNotes" placeholder="Add any special instructions for delivery..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="order-summary">
+                        <div class="summary-card">
+                            <h3 class="summary-title">Order Summary</h3>
+                            
+                            <div class="order-items" id="order-items">
+                                <!-- Order items will be populated dynamically -->
+                            </div>
+                            
+                            <div class="summary-items">
+                                <div class="summary-item">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Shipping</span>
+                                    <span id="shipping">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Tax</span>
+                                    <span id="tax">₹0</span>
+                                </div>
+                                <div class="summary-item discount" id="discount-item" style="display: none;">
+                                    <span>Discount</span>
+                                    <span id="discount">-₹0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span id="total">₹0</span>
+                            </div>
+
+                            <!-- Place Order Button -->
+                            <button class="place-order-btn" id="place-order-btn" type="submit" form="checkout-form">
+                                <i class="fas fa-lock"></i>
+                                Place Order
+                            </button>
+
+                            <!-- Security Notice -->
+                            <div class="security-notice">
+                                <i class="fas fa-shield-alt"></i>
+                                <p>Your payment information is secure and encrypted</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-main">
+                    <div class="footer-section footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                        </div>
+                        <p class="footer-description">
+                            Elevating fashion through innovative design and sustainable practices.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Shop</h3>
+                        <ul class="footer-links">
+                            <li><a href="menswear.html">Menswear</a></li>
+                            <li><a href="#">Limited Edition</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 ZeeClothes. All rights reserved.</p>
+                        </div>
+                        <div class="footer-legal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="checkout.js"></script>
+</body>
+</html>

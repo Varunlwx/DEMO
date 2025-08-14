@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.10.44/build/spline-viewer.js"></script>
 </head>
 <body>
     <!-- Loading Screen -->
@@ -28,27 +29,29 @@
     </div>
 
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
-            </a>
-        </div>
-        <nav>
-            <ul class="main-menu">
-                <li><a href="menswear.html" class="active">MENSWEAR</a></li>
-                <li><a href="#">LIMITED</a></li>
-                <li><a href="#">ZEEWORLD</a></li>
-            </ul>
-        </nav>
-        <div class="hamburger-menu" id="hamburger-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="user-menu">
-            <a href="#">LOGIN</a>
-            <a href="#">CART(0)</a>
-            <a href="#">EN</a>
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="menswear.html" class="active">MENSWEAR</a></li>
+                    <li><a href="#">LIMITED</a></li>
+                    <li><a href="#">ZEEWORLD</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="user-menu">
+                <a href="login.html">LOGIN</a>
+                <a href="cart.html">CART(<span id="cart-count">0</span>)</a>
+                <a href="#">EN</a>
+            </div>
         </div>
     </header>
     
@@ -62,9 +65,83 @@
         </ul>
     </div>
 
+    <!-- Mobile Menu JavaScript - Simple Test -->
+    <script>
+        // Immediate test
+        alert('JavaScript is working on menswear page!');
+        
+        // Simple function to toggle menu
+        function toggleMobileMenu(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            console.log('Toggle function called!');
+            
+            var hamburger = document.getElementById('hamburger-menu');
+            var mobileMenu = document.getElementById('mobile-menu');
+            
+            if (!hamburger) {
+                console.log('Hamburger not found!');
+                return;
+            }
+            
+            if (!mobileMenu) {
+                console.log('Mobile menu not found!');
+                return;
+            }
+            
+            if (mobileMenu.classList.contains('active')) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+                mobileMenu.style.display = 'none';
+                console.log('Menu should be closed now');
+            } else {
+                mobileMenu.classList.add('active');
+                hamburger.classList.add('active');
+                
+                // Force the menu to be visible
+                mobileMenu.style.display = 'flex';
+                mobileMenu.style.opacity = '1';
+                mobileMenu.style.visibility = 'visible';
+                mobileMenu.style.position = 'fixed';
+                mobileMenu.style.top = '0';
+                mobileMenu.style.left = '0';
+                mobileMenu.style.width = '100%';
+                mobileMenu.style.height = '100%';
+                mobileMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+                mobileMenu.style.zIndex = '9999';
+                mobileMenu.style.justifyContent = 'center';
+                mobileMenu.style.alignItems = 'center';
+                
+                console.log('Menu should be open now - look for dark overlay!');
+            }
+        }
+        
+        // Wait a moment then add click handler
+        setTimeout(function() {
+            var hamburger = document.getElementById('hamburger-menu');
+            if (hamburger) {
+                hamburger.addEventListener('click', toggleMobileMenu);
+                console.log('Click handler added to hamburger!');
+            } else {
+                console.log('Could not find hamburger to add click handler!');
+            }
+        }, 1000);
+    </script>
+
     <main>
+        <!-- Test Button -->
+        <div style="position: fixed; top: 100px; right: 20px; z-index: 9999;">
+            <button id="test-cart-btn" style="background: #4CAF50; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                Test Add to Cart
+            </button>
+        </div>
+        
         <!-- Hero Section for Menswear -->
         <section class="menswear-hero">
+            <spline-viewer url="https://prod.spline.design/AdHOUBUWC0esS-86/scene.splinecode" class="hero-spline-viewer"></spline-viewer>
             <div class="hero-content">
                 <h1 class="page-title" id="page-title">MENSWEAR</h1>
                 <p class="page-subtitle">Sophisticated styles for the modern gentleman</p>
@@ -325,5 +402,105 @@
     </footer>
 
     <script src="menswear.js"></script>
+    
+    <!-- Direct Cart Test -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Direct cart test script loaded');
+        
+        // Test if we can access localStorage
+        try {
+            const testData = localStorage.getItem('zeeclothes_cart');
+            console.log('localStorage test - current cart data:', testData);
+            
+            // Test adding to cart directly
+            const testProduct = {
+                id: 'direct-test',
+                name: 'Direct Test Product',
+                price: 1000,
+                size: 'M',
+                quantity: 1
+            };
+            
+            // Add test product to cart
+            const currentCart = testData ? JSON.parse(testData) : [];
+            currentCart.push(testProduct);
+            localStorage.setItem('zeeclothes_cart', JSON.stringify(currentCart));
+            
+            // Update cart count
+            const count = currentCart.reduce((total, item) => total + item.quantity, 0);
+            const cartCountElements = document.querySelectorAll('#cart-count');
+            cartCountElements.forEach(element => {
+                element.textContent = count;
+            });
+            
+            console.log('Direct cart test completed. Cart count:', count);
+            
+        } catch (error) {
+            console.error('Direct cart test failed:', error);
+        }
+    });
+    </script>
+    
+    <!-- Working Mobile Menu -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Working mobile menu loaded on menswear page');
+        
+        const hamburger = document.getElementById('hamburger-menu');
+        
+        if (hamburger) {
+            hamburger.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log('Opening mobile menu');
+                
+                // Professional mobile menu using the working approach
+                var workingMenu = document.createElement('div');
+                
+                workingMenu.innerHTML = '<div style="text-align: center; padding: 20px; margin-top: 80px;"><h2 style="color: white; margin: 40px 0; font-size: 36px; font-family: Oswald, sans-serif; letter-spacing: 3px;">MENU</h2><a href="menswear.html" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">MENSWEAR</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LIMITED</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">ZEEWORLD</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LOGIN</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">CART(0)</a></div>';
+                workingMenu.style.position = 'fixed';
+                workingMenu.style.top = '0';
+                workingMenu.style.left = '0';
+                workingMenu.style.width = '100%';
+                workingMenu.style.height = '100%';
+                workingMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.92)'; // Dark professional background
+                workingMenu.style.color = 'white';
+                workingMenu.style.zIndex = '9999999';
+                workingMenu.style.display = 'block';
+                workingMenu.style.overflow = 'auto';
+                workingMenu.id = 'working-mobile-menu';
+                
+                // Add close functionality when clicking on links
+                workingMenu.addEventListener('click', function(e) {
+                    if (e.target.tagName === 'A') {
+                        document.body.removeChild(workingMenu);
+                        hamburger.classList.remove('active');
+                        document.body.style.overflow = '';
+                        console.log('Mobile menu closed');
+                    }
+                });
+                
+                // Add close functionality when clicking background
+                workingMenu.addEventListener('click', function(e) {
+                    if (e.target === workingMenu) {
+                        document.body.removeChild(workingMenu);
+                        hamburger.classList.remove('active');
+                        document.body.style.overflow = '';
+                        console.log('Mobile menu closed');
+                    }
+                });
+                
+                document.body.appendChild(workingMenu);
+                document.body.style.overflow = 'hidden';
+                hamburger.classList.add('active');
+                
+                console.log('Mobile menu opened successfully');
+            });
+        } else {
+            console.error('Hamburger not found on menswear page');
+        }
+    });
+    </script>
 </body>
 </html>

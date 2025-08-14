@@ -1,3 +1,15 @@
+// Global cart count update function
+function updateGlobalCartCount() {
+    const savedCart = localStorage.getItem('zeeclothes_cart');
+    const cart = savedCart ? JSON.parse(savedCart) : [];
+    const count = cart.reduce((total, item) => total + item.quantity, 0);
+    
+    const cartCountElements = document.querySelectorAll('#cart-count');
+    cartCountElements.forEach(element => {
+        element.textContent = count;
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Register GSAP ScrollTrigger plugin
     gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
         limitCallbacks: true,
         ignoreMobileResize: true
     });
+    
+    // Update cart count
+    updateGlobalCartCount();
     
     // Initialize loading screen
     initLoadingScreen();
@@ -275,6 +290,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll animations
     initScrollAnimations();
     
+    // Initialize global parallax motion
+    initParallaxMotion();
+    
     // Bestseller Section Animation
     function initBestsellerAnimations() {
         const bestsellerSection = document.querySelector('.bestseller-section');
@@ -516,4 +534,69 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize API data fetching
     fetchProducts();
     fetchCollections();
+    
+    // Listen for cart changes from other pages
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'zeeclothes_cart') {
+            updateGlobalCartCount();
+        }
+    });
+    
+    // Listen for custom cart update events
+    window.addEventListener('cartUpdated', function(e) {
+        updateGlobalCartCount();
+    });
+    
+    // Parallax Motion
+    function initParallaxMotion() {
+        if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+        
+        const parallaxElements = [];
+        
+        // Hero
+        const heroContent = document.querySelector('.hero-content');
+        if (heroContent) parallaxElements.push({ el: heroContent, speed: 0.15 });
+        
+        // Spline background in scroll container
+        const splineBg = document.querySelector('.spline-background');
+        if (splineBg) parallaxElements.push({ el: splineBg, speed: 0.1, scale: 1.03 });
+        
+        // Section reveal images
+        document.querySelectorAll('.reveal-image').forEach((el, i) => {
+            parallaxElements.push({ el, speed: 0.2 + (i % 3) * 0.05 });
+        });
+        
+        // Product images
+        document.querySelectorAll('.product-image img, .product-img').forEach((el, i) => {
+            parallaxElements.push({ el, speed: 0.12 + (i % 2) * 0.05 });
+        });
+        
+        // Footer bg subtle motion
+        document.querySelectorAll('.footer-bg-elements .bg-element').forEach((el, i) => {
+            parallaxElements.push({ el, speed: 0.08 + (i % 3) * 0.03 });
+        });
+        
+        parallaxElements.forEach(({ el, speed, scale }) => {
+            // Skip if element not in DOM
+            if (!el) return;
+            
+            const triggerTarget = el.closest('section') || el;
+            const fromY = -40 * speed * 10;
+            const toY = 40 * speed * 10;
+            
+            gsap.fromTo(el,
+                { y: fromY, scale: scale ? scale : 1 },
+                {
+                    y: toY,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: triggerTarget,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                }
+            );
+        });
+    }
 });

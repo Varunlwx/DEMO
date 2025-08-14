@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - ZeeClothes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
+        </marquee>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                </a>
+            </div>
+            <nav>
+                <ul class="main-menu">
+                    <li><a href="menswear.html">MENSWEAR</a></li>
+                    <li><a href="#">LIMITED</a></li>
+                    <li><a href="#">ZEEWORLD</a></li>
+                </ul>
+            </nav>
+            <div class="hamburger-menu" id="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="user-menu">
+                <a href="login.html">LOGIN</a>
+                <a href="cart.html" class="active">CART(<span id="cart-count">0</span>)</a>
+                <a href="#">EN</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Breadcrumb Section -->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <i class="fas fa-chevron-right"></i>
+                    <span>Shopping Cart</span>
+                </nav>
+            </div>
+        </section>
+
+        <!-- Cart Section -->
+        <section class="cart-section">
+            <div class="container">
+                <div class="cart-header">
+                    <h1 class="cart-title">Shopping Cart</h1>
+                    <p class="cart-subtitle">Review your items and proceed to checkout</p>
+                </div>
+
+                <div class="cart-content">
+                    <!-- Cart Items -->
+                    <div class="cart-items-container">
+                        <div class="cart-items" id="cart-items">
+                            <!-- Cart items will be populated dynamically -->
+                        </div>
+                        
+                        <!-- Empty Cart State -->
+                        <div class="empty-cart" id="empty-cart" style="display: none;">
+                            <div class="empty-cart-content">
+                                <i class="fas fa-shopping-bag empty-cart-icon"></i>
+                                <h2>Your cart is empty</h2>
+                                <p>Looks like you haven't added any items to your cart yet.</p>
+                                <a href="menswear.html" class="btn-primary">Start Shopping</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cart Summary -->
+                    <div class="cart-summary">
+                        <div class="summary-card">
+                            <h3 class="summary-title">Order Summary</h3>
+                            
+                            <div class="summary-items">
+                                <div class="summary-item">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Shipping</span>
+                                    <span id="shipping">₹0</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>Tax</span>
+                                    <span id="tax">₹0</span>
+                                </div>
+                                <div class="summary-item discount" id="discount-item" style="display: none;">
+                                    <span>Discount</span>
+                                    <span id="discount">-₹0</span>
+                                </div>
+                            </div>
+                            
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span id="total">₹0</span>
+                            </div>
+
+                            <!-- Promo Code -->
+                            <div class="promo-code-section">
+                                <div class="promo-input-group">
+                                    <input type="text" id="promo-code" placeholder="Enter promo code" class="promo-input">
+                                    <button type="button" id="apply-promo" class="apply-promo-btn">Apply</button>
+                                </div>
+                                <div class="promo-message" id="promo-message"></div>
+                            </div>
+
+                            <!-- Checkout Button -->
+                            <button class="checkout-btn" id="checkout-btn" disabled>
+                                Proceed to Checkout
+                            </button>
+
+                            <!-- Continue Shopping -->
+                            <a href="menswear.html" class="continue-shopping">
+                                <i class="fas fa-arrow-left"></i>
+                                Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-main">
+                    <div class="footer-section footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                        </div>
+                        <p class="footer-description">
+                            Elevating fashion through innovative design and sustainable practices.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Shop</h3>
+                        <ul class="footer-links">
+                            <li><a href="menswear.html">Menswear</a></li>
+                            <li><a href="#">Limited Edition</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 ZeeClothes. All rights reserved.</p>
+                        </div>
+                        <div class="footer-legal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="cart.js"></script>
+</body>
+</html>

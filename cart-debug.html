@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Debug - ZeeClothes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
+        </marquee>
+    </div>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="menswear.html">MENSWEAR</a></li>
+                <li><a href="#">LIMITED</a></li>
+                <li><a href="#">ZEEWORLD</a></li>
+            </ul>
+        </nav>
+        <div class="user-menu">
+            <a href="login.html">LOGIN</a>
+            <a href="cart.html">CART(<span id="cart-count">0</span>)</a>
+            <a href="#">EN</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 style="color: white; font-family: 'Oswald', sans-serif; font-size: 48px; text-align: center; margin: 100px 0;">
+                Cart Debug Page
+            </h1>
+            
+            <div style="text-align: center; margin: 50px 0;">
+                <button id="simple-add" style="color: white; background: #4CAF50; border: none; padding: 15px 30px; margin: 10px; cursor: pointer; font-size: 16px; border-radius: 8px;">
+                    Simple Add to Cart
+                </button>
+                <button id="check-cart" style="color: white; background: #2196F3; border: none; padding: 15px 30px; margin: 10px; cursor: pointer; font-size: 16px; border-radius: 8px;">
+                    Check Cart
+                </button>
+                <button id="clear-cart" style="color: white; background: #f44336; border: none; padding: 15px 30px; margin: 10px; cursor: pointer; font-size: 16px; border-radius: 8px;">
+                    Clear Cart
+                </button>
+            </div>
+            
+            <div id="debug-info" style="color: white; text-align: center; font-size: 18px; margin: 30px 0; padding: 20px; background: rgba(255,255,255,0.1); border-radius: 10px;">
+                <h3>Debug Information</h3>
+                <div id="cart-status">Cart Status: Loading...</div>
+                <div id="cart-items">Cart Items: 0</div>
+                <div id="localStorage-status">LocalStorage: Checking...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Add loaded class to body
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.add('loaded');
+            console.log('Cart debug page loaded');
+        });
+
+        // Simple Cart Manager for debugging
+        class DebugCartManager {
+            constructor() {
+                this.cart = this.loadCart();
+                this.updateDisplay();
+                this.bindEvents();
+                console.log('DebugCartManager initialized');
+            }
+
+            loadCart() {
+                const savedCart = localStorage.getItem('zeeclothes_cart');
+                const cart = savedCart ? JSON.parse(savedCart) : [];
+                console.log('Loaded cart from localStorage:', cart);
+                return cart;
+            }
+
+            saveCart() {
+                localStorage.setItem('zeeclothes_cart', JSON.stringify(this.cart));
+                console.log('Saved cart to localStorage:', this.cart);
+            }
+
+            addToCart() {
+                const testProduct = {
+                    id: 'debug-product-' + Date.now(),
+                    name: 'Debug Product',
+                    description: 'This is a debug product',
+                    price: 1000,
+                    image: 'assets/images/PLANE_SHIRT.png',
+                    size: 'M',
+                    quantity: 1
+                };
+
+                console.log('Adding product to cart:', testProduct);
+                this.cart.push(testProduct);
+                this.saveCart();
+                this.updateDisplay();
+                this.showNotification('Product added to cart!');
+            }
+
+            clearCart() {
+                console.log('Clearing cart');
+                this.cart = [];
+                this.saveCart();
+                this.updateDisplay();
+                this.showNotification('Cart cleared!');
+            }
+
+            updateDisplay() {
+                const count = this.cart.reduce((total, item) => total + item.quantity, 0);
+                
+                // Update cart count in header
+                const cartCountElements = document.querySelectorAll('#cart-count');
+                cartCountElements.forEach(element => {
+                    element.textContent = count;
+                });
+                
+                // Update debug info
+                document.getElementById('cart-status').textContent = `Cart Status: ${this.cart.length > 0 ? 'Has Items' : 'Empty'}`;
+                document.getElementById('cart-items').textContent = `Cart Items: ${count}`;
+                document.getElementById('localStorage-status').textContent = `LocalStorage: ${localStorage.getItem('zeeclothes_cart') ? 'Has Data' : 'Empty'}`;
+                
+                console.log('Display updated. Cart count:', count);
+            }
+
+            showNotification(message) {
+                const notification = document.createElement('div');
+                notification.className = 'notification success';
+                notification.innerHTML = `
+                    <i class="fas fa-check-circle"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    if (notification.parentElement) {
+                        notification.remove();
+                    }
+                }, 3000);
+            }
+
+            bindEvents() {
+                document.getElementById('simple-add').addEventListener('click', () => {
+                    console.log('Simple add button clicked');
+                    this.addToCart();
+                });
+
+                document.getElementById('check-cart').addEventListener('click', () => {
+                    console.log('Check cart button clicked');
+                    this.updateDisplay();
+                    console.log('Current cart:', this.cart);
+                });
+
+                document.getElementById('clear-cart').addEventListener('click', () => {
+                    console.log('Clear cart button clicked');
+                    this.clearCart();
+                });
+            }
+        }
+
+        // Initialize debug cart manager
+        const debugCartManager = new DebugCartManager();
+    </script>
+</body>
+</html>

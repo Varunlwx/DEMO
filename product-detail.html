@@ -46,8 +46,8 @@
             <span></span>
         </div>
         <div class="user-menu">
-            <a href="#">LOGIN</a>
-            <a href="#" id="cart-link">CART(0)</a>
+            <a href="login.html">LOGIN</a>
+            <a href="cart.html" id="cart-link">CART(<span id="cart-count">0</span>)</a>
             <a href="#">EN</a>
         </div>
     </header>
@@ -455,5 +455,65 @@
     </footer>
 
     <script src="product-detail.js"></script>
+    
+    <!-- Working Mobile Menu -->
+    <script>
+        window.addEventListener('load', function() {
+            console.log('Working mobile menu loaded on product detail page');
+            
+            const hamburger = document.getElementById('hamburger-menu');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('Opening mobile menu');
+                    
+                    // Professional mobile menu using the working approach
+                    var workingMenu = document.createElement('div');
+                    
+                    workingMenu.innerHTML = '<div style="text-align: center; padding: 20px; margin-top: 80px;"><h2 style="color: white; margin: 40px 0; font-size: 36px; font-family: Oswald, sans-serif; letter-spacing: 3px;">MENU</h2><a href="menswear.html" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">MENSWEAR</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LIMITED</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">ZEEWORLD</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">LOGIN</a><a href="#" style="display: block; color: #333; font-size: 24px; margin: 20px auto; text-decoration: none; padding: 18px 30px; background: white; border-radius: 8px; font-family: Oswald, sans-serif; letter-spacing: 2px; max-width: 300px; box-shadow: 0 4px 8px rgba(0,0,0,0.3); font-weight: 600;">CART(0)</a></div>';
+                    workingMenu.style.position = 'fixed';
+                    workingMenu.style.top = '0';
+                    workingMenu.style.left = '0';
+                    workingMenu.style.width = '100%';
+                    workingMenu.style.height = '100%';
+                    workingMenu.style.backgroundColor = 'rgba(0, 0, 0, 0.92)'; // Dark professional background
+                    workingMenu.style.zIndex = '9999999';
+                    workingMenu.style.display = 'block';
+                    workingMenu.style.overflow = 'auto';
+                    workingMenu.id = 'working-mobile-menu';
+                    
+                    // Add close functionality when clicking on links
+                    workingMenu.addEventListener('click', function(e) {
+                        if (e.target.tagName === 'A') {
+                            document.body.removeChild(workingMenu);
+                            hamburger.classList.remove('active');
+                            document.body.style.overflow = '';
+                            console.log('Mobile menu closed');
+                        }
+                    });
+                    
+                    // Add close functionality when clicking background
+                    workingMenu.addEventListener('click', function(e) {
+                        if (e.target === workingMenu) {
+                            document.body.removeChild(workingMenu);
+                            hamburger.classList.remove('active');
+                            document.body.style.overflow = '';
+                            console.log('Mobile menu closed');
+                        }
+                    });
+                    
+                    document.body.appendChild(workingMenu);
+                    document.body.style.overflow = 'hidden';
+                    hamburger.classList.add('active');
+                    
+                    console.log('Mobile menu opened successfully');
+                });
+            } else {
+                console.error('Hamburger not found on product detail page');
+            }
+        });
+    </script>
 </body>
 </html>

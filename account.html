@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - ZeeClothes</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loading-screen">
+        <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes" class="loading-logo">
+        <div class="loading-progress">
+            <div class="loading-bar" id="loading-bar"></div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <marquee behavior="scroll" direction="left" scrollamount="5">
+            ZeeClothes PROMO | LAUNCH 50% OFF — FREE SHIPPING FOR ORDERS ABOVE ₹31,500
+        </marquee>
+    </div>
+
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+            </a>
+        </div>
+        <nav>
+            <ul class="main-menu">
+                <li><a href="menswear.html">MENSWEAR</a></li>
+                <li><a href="#">LIMITED</a></li>
+                <li><a href="#">ZEEWORLD</a></li>
+            </ul>
+        </nav>
+        <div class="hamburger-menu" id="hamburger-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="user-menu">
+            <a href="account.html" class="active">ACCOUNT</a>
+            <a href="cart.html">CART(<span id="cart-count">0</span>)</a>
+            <a href="#" id="logout-btn">LOGOUT</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Account Section -->
+        <section class="account-section">
+            <div class="container">
+                <div class="account-header">
+                    <h1 class="account-title">My Account</h1>
+                    <p class="account-subtitle">Welcome back, <span id="user-name">User</span></p>
+                </div>
+
+                <div class="account-content">
+                    <!-- Account Navigation -->
+                    <div class="account-nav">
+                        <button class="nav-tab active" data-tab="overview">
+                            <i class="fas fa-home"></i>
+                            Overview
+                        </button>
+                        <button class="nav-tab" data-tab="orders">
+                            <i class="fas fa-shopping-bag"></i>
+                            Orders
+                        </button>
+                        <button class="nav-tab" data-tab="profile">
+                            <i class="fas fa-user"></i>
+                            Profile
+                        </button>
+                        <button class="nav-tab" data-tab="addresses">
+                            <i class="fas fa-map-marker-alt"></i>
+                            Addresses
+                        </button>
+                        <button class="nav-tab" data-tab="wishlist">
+                            <i class="fas fa-heart"></i>
+                            Wishlist
+                        </button>
+                        <button class="nav-tab" data-tab="settings">
+                            <i class="fas fa-cog"></i>
+                            Settings
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- Overview Tab -->
+                        <div class="tab-pane active" id="overview">
+                            <div class="overview-grid">
+                                <div class="overview-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h3>Total Orders</h3>
+                                        <p class="card-value" id="total-orders">0</p>
+                                    </div>
+                                </div>
+                                <div class="overview-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h3>Wishlist Items</h3>
+                                        <p class="card-value" id="wishlist-count">0</p>
+                                    </div>
+                                </div>
+                                <div class="overview-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h3>Saved Addresses</h3>
+                                        <p class="card-value" id="addresses-count">0</p>
+                                    </div>
+                                </div>
+                                <div class="overview-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-gift"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h3>Reward Points</h3>
+                                        <p class="card-value" id="reward-points">0</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="recent-orders">
+                                <h3>Recent Orders</h3>
+                                <div class="orders-list" id="recent-orders-list">
+                                    <div class="empty-state">
+                                        <i class="fas fa-shopping-bag"></i>
+                                        <p>No orders yet</p>
+                                        <a href="menswear.html" class="btn-primary">Start Shopping</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Orders Tab -->
+                        <div class="tab-pane" id="orders">
+                            <div class="orders-header">
+                                <h3>Order History</h3>
+                                <div class="order-filters">
+                                    <select id="order-status-filter">
+                                        <option value="">All Orders</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="processing">Processing</option>
+                                        <option value="shipped">Shipped</option>
+                                        <option value="delivered">Delivered</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="orders-list" id="orders-list">
+                                <!-- Orders will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Profile Tab -->
+                        <div class="tab-pane" id="profile">
+                            <div class="profile-form">
+                                <h3>Personal Information</h3>
+                                <form id="profile-form">
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label for="profile-firstName">First Name</label>
+                                            <input type="text" id="profile-firstName" name="firstName" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="profile-lastName">Last Name</label>
+                                            <input type="text" id="profile-lastName" name="lastName" required>
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label for="profile-email">Email Address</label>
+                                            <input type="email" id="profile-email" name="email" required>
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label for="profile-phone">Phone Number</label>
+                                            <input type="tel" id="profile-phone" name="phone" required>
+                                        </div>
+                                        <div class="form-group full-width">
+                                            <label for="profile-dob">Date of Birth</label>
+                                            <input type="date" id="profile-dob" name="dob">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn-primary">Update Profile</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- Addresses Tab -->
+                        <div class="tab-pane" id="addresses">
+                            <div class="addresses-header">
+                                <h3>Saved Addresses</h3>
+                                <button class="btn-secondary" id="add-address-btn">
+                                    <i class="fas fa-plus"></i>
+                                    Add New Address
+                                </button>
+                            </div>
+                            <div class="addresses-list" id="addresses-list">
+                                <!-- Addresses will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Wishlist Tab -->
+                        <div class="tab-pane" id="wishlist">
+                            <div class="wishlist-header">
+                                <h3>My Wishlist</h3>
+                            </div>
+                            <div class="wishlist-grid" id="wishlist-grid">
+                                <!-- Wishlist items will be populated dynamically -->
+                            </div>
+                        </div>
+
+                        <!-- Settings Tab -->
+                        <div class="tab-pane" id="settings">
+                            <div class="settings-section">
+                                <h3>Account Settings</h3>
+                                <div class="settings-options">
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h4>Email Notifications</h4>
+                                            <p>Receive updates about orders and promotions</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="email-notifications" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h4>SMS Notifications</h4>
+                                            <p>Receive order updates via SMS</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="sms-notifications">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="setting-item">
+                                        <div class="setting-info">
+                                            <h4>Marketing Communications</h4>
+                                            <p>Receive promotional offers and newsletters</p>
+                                        </div>
+                                        <label class="switch">
+                                            <input type="checkbox" id="marketing-communications">
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>Security</h3>
+                                <button class="btn-secondary" id="change-password-btn">
+                                    <i class="fas fa-lock"></i>
+                                    Change Password
+                                </button>
+                            </div>
+
+                            <div class="settings-section">
+                                <h3>Danger Zone</h3>
+                                <button class="btn-danger" id="delete-account-btn">
+                                    <i class="fas fa-trash"></i>
+                                    Delete Account
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="container">
+                <div class="footer-main">
+                    <div class="footer-section footer-brand">
+                        <div class="footer-logo">
+                            <img src="assets/zeeclothes-logo.svg" alt="ZeeClothes Logo">
+                        </div>
+                        <p class="footer-description">
+                            Elevating fashion through innovative design and sustainable practices.
+                        </p>
+                        <div class="footer-social">
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Shop</h3>
+                        <ul class="footer-links">
+                            <li><a href="menswear.html">Menswear</a></li>
+                            <li><a href="#">Limited Edition</a></li>
+                            <li><a href="#">New Arrivals</a></li>
+                            <li><a href="#">Best Sellers</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Support</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Size Guide</a></li>
+                            <li><a href="#">Shipping Info</a></li>
+                            <li><a href="#">Returns</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-section">
+                        <h3 class="footer-title">Company</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Sustainability</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Press</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="footer-bottom-content">
+                        <div class="footer-copyright">
+                            <p>&copy; 2024 ZeeClothes. All rights reserved.</p>
+                        </div>
+                        <div class="footer-legal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Terms of Service</a>
+                            <a href="#">Cookie Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="account.js"></script>
+</body>
+</html>
